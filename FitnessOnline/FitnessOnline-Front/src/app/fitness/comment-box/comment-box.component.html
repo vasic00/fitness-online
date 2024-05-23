@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="author">
+        <div class="avatar">
+            <img *ngIf="comment.creatorAvatar !== ''" [src]="comment.creatorAvatar">
+            <img *ngIf="comment.creatorAvatar === ''" src="assets/imgs/no-profile-img.png">
+        </div>
+        <div class="creator-info">{{comment.creatorInfo}} | {{comment.time}}</div>
+    </div>
+    <div class="content">
+        {{comment.content}}
+    </div>
+</div>

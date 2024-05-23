@@ -1,0 +1,13 @@
+<div class="rss-feed" *ngIf="rssData !== null && rssData !== undefined">
+    <div class="top">
+        You can find some fit facts down below. To continue to login screen, click <a routerLink="/auth">HERE</a>.
+    </div>
+    <h2 class="feed-title">{{ rssData.rss.channel[0].title[0] }}</h2>
+    <ul class="feed-items">
+        <li *ngFor="let item of rssData.rss.channel[0].item" class="feed-item">
+            <h3 class="item-title">{{ item.title[0] }}</h3>
+            <p class="item-description">{{ item.description[0] }}</p>
+            <p><a target="_blank" [href]="item.link[0]">{{ item.link[0]}}</a></p>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="main-content">
+        <div class="details">
+            <p class="some-property" style="font-style: italic;">About program:</p>
+            <p class="details-row">
+                <span class="some-property">Price: </span><span class="detail">{{program.price}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Name: </span><span class="detail">{{program.name}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Category: </span><span class="detail">{{program.category}}</span>
+            </p>
+            <p>
+                <span class="some-property">Attributes: </span>
+                <br>
+                <span class="attribute details-row" *ngFor="let a of program.attributes">
+                    <span class="minor-property">{{findByAttributeId(a.specificAttributeId)}}: </span>
+                    <span class="detail">{{a.value}}</span><br></span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Creator: </span><span class="detail">{{program.creator.info}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Ends in: </span><span class="detail">{{endsIn()}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Difficulty: </span><span class="detail">Level
+                    {{program.difficultyLevel}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Contact: </span><span class="detail">{{program.contact}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Instructor: </span><span class="detail">{{program.instructorInfo}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Location: </span><span class="detail">{{program.location}}</span>
+            </p>
+            <p class="details-row">
+                <span class="some-property">Description: </span><span class="detail">{{program.description}}</span>
+            </p>
+            <p>
+                <button class="participate-button" mat-raised-button color="primary" type="button"
+                    (click)="participate()" *ngIf="!participateDisabled">Participate</button>
+                <button mat-raised-button color="primary" type="button" (click)="message()"
+                    *ngIf="!participateDisabled">Message the creator</button>
+                <button mat-raised-button color="accent" type="button" (click)="deleteProgram()"
+                    *ngIf="!deleteDisabled">Delete</button>
+            </p>
+            <!-- <p>
+                <button mat-raised-button color="primary" type="button" (click)="returnToBrowsing()">Return</button>
+            </p> -->
+        </div>
+        <div class="images" *ngIf="images.length !== 0">
+            <img *ngFor="let image of images" [src]="image">
+        </div>
+    </div>
+    <div class="comments">
+        <app-comment-box class="box" *ngFor="let comment of program.comments" [comment]="comment"></app-comment-box>
+        <mat-form-field *ngIf="!guest" class="add-comment">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput [(ngModel)]="newCommentText"></textarea>
+        </mat-form-field>
+        <div class="comment-button-container">
+            <button class="comment-button" *ngIf="!guest" mat-raised-button color="primary" type="button"
+                (click)="postComment()">Post
+                comment</button>
+        </div>
+    </div>
+    <div>
+        <button class="return-button" mat-raised-button color="primary" type="button"
+            (click)="returnToBrowsing()">Return</button>
+    </div>
+</div>

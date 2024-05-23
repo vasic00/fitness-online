@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Messaging {{data.receiver}}</h1>
+<div mat-dialog-content>
+    <mat-form-field subscriptSizing="dynamic" class="add-comment">
+        <mat-label>Leave a message</mat-label>
+        <textarea matInput [(ngModel)]="message"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button (click)="submit()" (keyup.enter)="submit()" cdkFocusInitial color="primary">
+        Send
+    </button>
+    <button mat-raised-button mat-dialog-close color="primary">Return</button>
+</div>

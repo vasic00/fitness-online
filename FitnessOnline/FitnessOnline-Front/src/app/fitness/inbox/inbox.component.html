@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="filters">
+        <mat-form-field>
+            <mat-label>Types of messages:</mat-label>
+            <mat-select [(ngModel)]="selectedType" [ngModelOptions]="{standalone: true}" (selectionChange)="fetch()">
+                <mat-option value="all">All</mat-option>
+                <mat-option value="unread">Unread</mat-option>
+                <mat-option value="read">Read</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Contains:</mat-label>
+            <input matInput type="text" (change)="fetch()" [(ngModel)]="contains">
+        </mat-form-field>
+    </div>
+    <div class="messages">
+        <div class="message" *ngFor="let message of messages">
+            <div class="message-header" (click)="markAsRead(message)"
+                [style.background-color]="message.display?'#3f51b5':'rgb(201, 202, 236)'"
+                [style.color]="message.display?'white':''">
+                <div class="message-header-content">Message from {{message.sender}} at
+                    {{message.timeOfSending.replace("T"," ")}}</div>
+                <div class="message-header-buttons">
+                    <button mat-icon-button (click)="reply(message, $event)" matTooltip="Reply">
+                        <mat-icon class="icon">reply</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteMessage(message, $event)" matTooltip="Delete">
+                        <mat-icon class="icon">delete</mat-icon>
+                    </button>
+                </div>
+                <mat-menu #menu="matMenu" overlapTrigger="false">
+                    <button mat-menu-item (click)="reply(message, $event)">
+                        <mat-icon class="icon">reply</mat-icon>
+                        <span>Reply</span>
+                    </button>
+                    <button mat-menu-item (click)="deleteMessage(message, $event)">
+                        <mat-icon class="icon">delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                </mat-menu>
+                <div class="menu">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="stopPropagation($event)"
+                        aria-label="Example icon-button with a menu">
+                        <mat-icon class="icon">menu</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="message-content" [style.display]="message.display?'block':'none'">
+                {{message.content}}
+            </div>
+        </div>
+    </div>
+</div>

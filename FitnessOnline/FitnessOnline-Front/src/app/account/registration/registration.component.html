@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="counterbalance">
+        asdf
+    </div>
+    <form class="reg-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input matInput formControlName="firstname" required>
+                <mat-error *ngIf="registrationForm.get('firstname')?.hasError('required')">
+                    First name is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Last name</mat-label>
+                <input matInput formControlName="lastname" required>
+                <mat-error *ngIf="registrationForm.get('lastname')?.hasError('required')">
+                    Last name is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" required>
+                <mat-error *ngIf="registrationForm.get('username')?.hasError('required')">
+                    Username is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" required minlength="8">
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">
+                    Password is required!
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">
+                    Password should be longer than 8 characters!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Confirm password</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" required minlength="8">
+                <mat-error *ngIf="registrationForm.get('confirmPassword')?.hasError('required')">
+                    Password confirmation is required!
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">
+                    Password should be longer than 8 characters!
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('confirmPassword')?.hasError('not_matching')">
+                    The password doesn't match!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>E-mail</mat-label>
+                <input matInput type="email" formControlName="email" required>
+                <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+                    E-mail is required!
+                </mat-error>
+                <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
+                    Invalid e-mail format!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" required>
+                <mat-error *ngIf="registrationForm.get('city')?.hasError('required')">
+                    City is required!
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="button-parent-parent">
+            <div class="button-parent">
+                <button mat-raised-button color="primary" type="submit" (keyup.enter)="submitForm()">Register</button>
+            </div>
+        </div>
+    </form>
+    <div class="combobox">
+        <mat-form-field>
+            <mat-label>Avatar</mat-label>
+            <mat-select [(ngModel)]="selectedAvatar" [ngModelOptions]="{standalone: true}"
+                (selectionChange)="onSelectionChange()">
+                <mat-option *ngFor="let avatar of avatars" [value]="avatar">{{avatar.value}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <img [src]="selectedAvatar?.path" alt="No avatar">
+        </div>
+    </div>
+</div>

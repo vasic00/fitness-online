@@ -1,0 +1,123 @@
+<div class="container">
+    <form class="add-form" [formGroup]="addProgramForm" (ngSubmit)="onSubmit()">
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="addProgramForm.get('name')?.hasError('required')">
+                    Please enter program name.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" min="1" formControlName="price" required>
+                <mat-error *ngIf="addProgramForm.get('price')?.hasError('required')">
+                    Please enter program price.
+                </mat-error>
+                <mat-error *ngIf="addProgramForm.get('price')?.hasError('min')">
+                    Price should be greater than 1.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Difficulty level</mat-label>
+                <mat-select formControlName="difficultyLevel" required>
+                    <mat-option value="1">Level 1</mat-option>
+                    <mat-option value="2">Level 2</mat-option>
+                    <mat-option value="3">Level 3</mat-option>
+                    <mat-option value="4">Level 4</mat-option>
+                    <mat-option value="5">Level 5</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addProgramForm.get('difficultyLevel')?.hasError('required')">
+                    Please choose difficulty level.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <mat-select (selectionChange)="onSelectionChange($event)" formControlName="selectControl" required>
+                    <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="addProgramForm.get('selectControl')?.hasError('required')">
+                    Please choose category.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent" *ngFor="let specificAttribute of specificAttributes">
+            <mat-form-field appearance="fill">
+                <mat-label>{{specificAttribute.name}}</mat-label>
+                <input matInput [formControlName]="specificAttribute.name">
+                <mat-error *ngIf="addProgramForm.get(specificAttribute.name)?.hasError('required')">
+                    Please provide value for the attribute.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field>
+                <mat-label>Choose end date and time</mat-label>
+                <input matInput type="datetime-local" required formControlName="ending">
+                <mat-error *ngIf="addProgramForm.get('ending')?.hasError('required')">
+                    Please provide end date and time.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Contact</mat-label>
+                <input matInput formControlName="contact" required>
+                <mat-error *ngIf="addProgramForm.get('contact')?.hasError('required')">
+                    Please provide contact details.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location" required>
+                <mat-error *ngIf="addProgramForm.get('location')?.hasError('required')">
+                    Please provide location details.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Instructor info</mat-label>
+                <input matInput formControlName="instructor" required>
+                <mat-error
+                    *ngIf="addProgramForm.get('instructor')?.hasError('required') && addProgramForm.get('instructor')?.touched">
+                    Please provide instructor information.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="field-parent">
+            <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5" formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div class="button-parent-parent">
+            <div class="button-parent">
+                <button mat-raised-button color="primary" type="submit" (keyup.enter)="submitForm()">Add
+                    program</button>
+            </div>
+        </div>
+    </form>
+    <div class="images-upload-text">You can upload images here.</div>
+    <input id="file" type="file" class="input-file-container" (change)="onFileSelected($event)" accept="image/*"
+        multiple>
+    <div class="image-upload-container">
+        <div class="image-preview" *ngFor="let image of images">
+            <div class="remove-and-image-container">
+                <img [src]="image.url" alt="Preview Image">
+                <button class="remove-button" (click)="removeImage(image)">Remove</button>
+            </div>
+        </div>
+    </div>
+    <!-- <button class="upload-button" (click)="uploadImages()">Save Images</button> -->
+
+</div>

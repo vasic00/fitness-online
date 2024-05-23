@@ -1,0 +1,37 @@
+header {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5vw;
+    background-color: transparent;
+    padding-bottom: 0;
+    height: 11vmax;
+    box-sizing: border-box;
+}
+
+#logo {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#title {
+    width: 75%;
+    font-size: 5vw;
+    word-spacing: 2vw;
+    font-family: 'Roboto', sans-serif;
+    color: #3f51b5;
+
+}
+
+#logo-cont {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

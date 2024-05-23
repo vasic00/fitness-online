@@ -1,0 +1,37 @@
+.container-parent {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    min-height: calc(70vh - 98px);
+}
+
+.container {
+    overflow-x: auto;
+    overflow-y: auto;
+    width: 90%;
+    max-height: 800px;
+    height: fit-content;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #3f51b5;
+    box-sizing: border-box;
+}
+
+tr {
+    height: 80px;
+}
+
+.row-header {
+    color: white !important;
+    background: #3f51b5 !important;
+}
+
+.cell {
+    text-align: center !important;
+}
+
+
+
+/* .row {
+    height: 20px !important;
+    background: grey !important;
+} */

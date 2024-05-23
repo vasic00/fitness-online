@@ -1,0 +1,15 @@
+<mat-card (click)="getInfo()" [class.participated]="participated">
+    <mat-card-header>
+        <mat-card-subtitle><span>{{ program.category }}</span></mat-card-subtitle>
+        <mat-card-title>{{ program.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <img mat-card-image [src]="image" alt="No image!" class="product-img" *ngIf="hasImage" />
+        <img mat-card-image src="../../../assets/imgs/no-image-icon.png" alt="No image!" class="product-img"
+            *ngIf="!hasImage" />
+    </mat-card-content>
+    <mat-card-footer>
+        <div class="price">{{program.price}}</div>
+        <div *ngIf="participated" class="p-mark">P</div>
+    </mat-card-footer>
+</mat-card>

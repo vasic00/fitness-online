@@ -1,0 +1,22 @@
+<div class="fetch-container">
+    <mat-form-field>
+        <mat-label>Muscle</mat-label>
+        <input matInput [(ngModel)]="muscle" (change)="fetch()">
+    </mat-form-field>
+</div>
+<div class="container">
+    <div class="inner-container" *ngFor="let exercise of exercises">
+        <div class="detail">
+            <div class="detail-name">Name: </div>
+            <div class="detail-text">{{exercise.name}}</div>
+        </div>
+        <div class="detail">
+            <div class="detail-name">Difficulty: </div>
+            <div class="detail-text">{{exercise.difficulty}}</div>
+        </div>
+        <div class="detail">
+            <div class="detail-name">Instructions: </div>
+            <div class="detail-text">{{exercise.instructions}}</div>
+        </div>
+    </div>
+</div>

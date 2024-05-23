@@ -1,0 +1,66 @@
+<div class="container">
+    <mat-toolbar class="toolbar" color="primary">
+        <div class="image-container">
+            <img *ngIf="user.avatar !== null && user.avatar !== ''" [src]="user.avatar">
+            <img *ngIf="user.avatar === null || user.avatar === ''" src="assets/imgs/no-profile-img.png">
+        </div>
+        <div class="center-content">
+            <span class="center-span">{{user.firstname}} {{user.lastname}}</span><br>
+            <span class="center-span">{{user.city}}</span>
+        </div>
+        <div class="menu">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon class="icon">menu</mat-icon>
+            </button>
+        </div>
+        <mat-menu #menu="matMenu" overlapTrigger="false">
+            <button mat-menu-item (click)="openSubscriptions()">
+                <mat-icon class="icon">subscriptions</mat-icon>
+                <span>Subscriptions</span>
+            </button>
+            <button mat-menu-item (click)="contactAdvisors()">
+                <mat-icon class="icon">contact_support</mat-icon>
+                <span>Contact support</span>
+            </button>
+            <button mat-menu-item (click)="manageAccount()">
+                <mat-icon class="icon">manage_accounts</mat-icon>
+                <span>Account settings</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon class="icon">logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+        <div class="buttons">
+            <button mat-icon-button (click)="openSubscriptions()" matTooltip="Subscriptions">
+                <mat-icon class="icon">subscriptions</mat-icon>
+            </button>
+            <button mat-icon-button (click)="contactAdvisors()" matTooltip="Contact advisors">
+                <mat-icon class="icon">contact_support</mat-icon>
+            </button>
+            <button mat-icon-button (click)="manageAccount()" matTooltip="Account settings">
+                <mat-icon class="icon">manage_accounts</mat-icon>
+            </button>
+            <button mat-icon-button (click)="logout()" matTooltip="Logout">
+                <mat-icon class="icon">logout</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">web_asset</mat-icon>
+                My programs
+            </ng-template>
+            <app-browse class="mat-tab-profile" [profile]="true" #browseComponent></app-browse>
+        </mat-tab>
+        <mat-tab class="fit-content-tab">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">fitness_center</mat-icon>
+                My activity log
+            </ng-template>
+            <app-activity-log class="mat-tab-profile fit-content-tab"></app-activity-log>
+        </mat-tab>
+    </mat-tab-group>
+    <!-- <app-browse [profile]="true" #browseComponent></app-browse> -->
+</div>

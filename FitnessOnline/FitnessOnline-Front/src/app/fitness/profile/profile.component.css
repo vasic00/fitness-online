@@ -1,0 +1,149 @@
+.container {
+    margin-top: 40px;
+    min-height: calc(70vh - 40px);
+}
+
+.toolbar {
+    width: 100%;
+    max-width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    margin-bottom: 35px;
+    max-height: 100%;
+}
+
+.center-content {
+    flex-basis: 60%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-wrap: wrap;
+    /* margin-left: auto; */
+}
+
+.center-span {
+    text-wrap: wrap;
+    display: inline-block;
+}
+
+.image-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-basis: 20%;
+}
+
+img {
+    width: 80px;
+    height: 80%;
+    min-width: 80px;
+    /* max-width: 80px; */
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 10%;
+    flex-grow: 1;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    flex-basis: 20%;
+}
+
+.icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+mat-icon-button {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+mat-button {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+
+/* .menu-icon {
+    display: flex;
+    flex-direction: row;
+} */
+
+mat-button-ripple {
+    font-size: inherit !important;
+    width: inherit !important;
+    height: inherit !important;
+    line-height: inherit !important;
+}
+
+mat-icon-button-ripple {
+    font-size: inherit !important;
+    width: inherit !important;
+    height: inherit !important;
+    line-height: inherit !important;
+}
+
+.fit-content-tab {
+    height: fit-content;
+    max-height: fit-content;
+    overflow-y: hidden;
+}
+
+@media only screen and (min-width: 600px) {
+    .menu {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .buttons {
+        display: none;
+    }
+
+    .image-container {
+        min-width: 10%
+    }
+
+    img {
+        min-width: 30px;
+        height: 50px;
+    }
+
+    .icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+    }
+
+    .toolbar {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+}

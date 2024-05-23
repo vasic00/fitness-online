@@ -1,0 +1,19 @@
+.actions {
+    padding-left: 24px;
+}
+
+.content {
+    width: 100%;
+    padding: 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    height: 200px;
+    max-height: 100%;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}

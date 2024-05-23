@@ -1,0 +1,33 @@
+<div class="container-parent">
+    <div class="container" *ngIf="purchaseList.length !== 0">
+        <table mat-table [dataSource]="purchaseList">
+            <ng-container matColumnDef="paymentType">
+                <th class="cell" mat-header-cell *matHeaderCellDef> Payment type </th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.paymentType}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+                <th class="cell" mat-header-cell *matHeaderCellDef> Time </th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.time}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="programCategory">
+                <th class="cell" mat-header-cell *matHeaderCellDef> Program category </th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.programCategory}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="programName">
+                <th class="cell" mat-header-cell *matHeaderCellDef> Program name </th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.programName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="programPrice">
+                <th class="cell" mat-header-cell *matHeaderCellDef> Program Price </th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.programPrice}} </td>
+            </ng-container>
+
+            <tr class="row-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

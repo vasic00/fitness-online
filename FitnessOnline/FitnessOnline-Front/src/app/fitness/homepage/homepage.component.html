@@ -1,0 +1,57 @@
+<div id="fitness">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" [(selectedIndex)]="tabIndex"
+        (selectedTabChange)="saveTab()">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">shopping_cart</mat-icon>
+                Browse programs
+            </ng-template>
+            <div>
+                <app-browse #browse></app-browse>
+            </div>
+        </mat-tab>
+        <mat-tab [disabled]="guest">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">add_shopping_cart</mat-icon>
+                Add program
+            </ng-template>
+            <div class="form-cont">
+                <app-add-program *ngIf="!guest" (refresh)="handleRefresh($event)"></app-add-program>
+            </div>
+        </mat-tab>
+        <mat-tab [disabled]="guest">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">shopping_basket</mat-icon>
+                Purchase history
+            </ng-template>
+            <div>
+                <app-history *ngIf="!guest"></app-history>
+            </div>
+        </mat-tab>
+        <mat-tab [disabled]="guest">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">account_circle</mat-icon>
+                My profile
+            </ng-template>
+            <app-profile *ngIf="!guest" (updateBrowseData)="updateBrowse($event)" #profile></app-profile>
+        </mat-tab>
+        <mat-tab [disabled]="guest">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">{{inboxIcon}}</mat-icon>
+                Inbox
+            </ng-template>
+            <div>
+                <app-inbox *ngIf="!guest" (updateInboxIcon)="updateInboxIcon($event)"></app-inbox>
+            </div>
+        </mat-tab>
+        <mat-tab [disabled]="guest">
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">fitness_center</mat-icon>
+                Recommended exercises
+            </ng-template>
+            <div class="full-height">
+                <app-exercises-recommendation *ngIf="!guest"></app-exercises-recommendation>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

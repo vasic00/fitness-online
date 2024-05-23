@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="button-container">
+        <button mat-raised-button type="button" color="primary" (click)="newExercise()">Save results of today's
+            exercise</button>
+    </div>
+    <div class="button-container">
+        <button mat-raised-button type="button" color="primary" (click)="switch()" *ngIf="!showGraphs">Show
+            graphs</button>
+        <button mat-raised-button type="button" color="primary" (click)="switch()" *ngIf="showGraphs">Show text</button>
+    </div>
+    <div class="selection-container" *ngIf="showGraphs">
+        <mat-form-field>
+            <mat-label>Period:</mat-label>
+            <mat-select [(ngModel)]="selectedPeriod" [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="updateChartOptions()">
+                <mat-option value="One month">One month</mat-option>
+                <mat-option value="Six months">Six months</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="selection-container" *ngIf="!showGraphs">
+        <mat-form-field appearance="fill">
+            <mat-label>Month</mat-label>
+            <mat-select [(ngModel)]="yearMonth" (ngModelChange)="updateCards()" [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let month of months" [value]="month">{{month}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div *ngIf="!showGraphs" class="card-container">
+        <div class="card" *ngFor="let card of cards">
+            <div>
+                Name: {{card.name}}
+            </div>
+            <div>
+                Duration: {{card.duration}} min
+            </div>
+            <div>
+                Intensity: {{card.intensity}} bpm
+            </div>
+            <div>
+                Result: {{card.result}} kg
+            </div>
+            <div>
+                Date: {{card.date}}
+            </div>
+        </div>
+    </div>
+    <div id="contentToConvert" #contentToConvert [style.display]="showGraphs?'block':'none'">
+        <div class="chart-container-container">
+            <div class="chart-container">
+                <canvas id="chart1" #chart1>
+                    {{chart}}
+                </canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="chart2" #chart2>
+                    {{chart2}}
+                </canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="chart3" #chart3>
+                    {{chart3}}
+                </canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="chart4" #chart4>
+                    {{chart4}}
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-button-container" *ngIf="showGraphs">
+        <button mat-raised-button type="button" color="primary" (click)="convertToPDF()">Download charts as PDF</button>
+    </div>
+</div>

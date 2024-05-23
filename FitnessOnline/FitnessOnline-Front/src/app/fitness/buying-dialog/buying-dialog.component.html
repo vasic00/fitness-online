@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Choose payment type</h1>
+<div mat-dialog-content>
+    <mat-form-field appearance="fill">
+        <mat-label>Payment type</mat-label>
+        <mat-select disableRipple [(ngModel)]="paying" (selectionChange)="render()">
+            <mat-option value="live">Live</mat-option>
+            <mat-option value="card">Credit card</mat-option>
+            <mat-option value="paypal">PayPal</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="dataRequired">
+        <mat-label>{{ requiredData }}</mat-label>
+        <input matInput [(ngModel)]="number" [formControl]="numberFormControl" />
+        <mat-error *ngIf="numberFormControl.hasError('required')">
+            Enter {{ requiredData }}!
+        </mat-error>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+    <button mat-raised-button (click)="submit()" cdkFocusInitial color="primary">
+        Purchase
+    </button>
+    <button mat-raised-button mat-dialog-close color="primary">Return</button>
+</div>
